@@ -1,0 +1,94 @@
+.App {
+  text-align: center;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+}
+
+.App-header {
+  background-color: #531cb3;
+  max-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmax);
+  color: #aa7bc3;
+}
+
+.Book-manager-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  border: solid blue 5px;
+}
+
+.Books-container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 8;
+  border: solid yellow 8px;
+  background-color: transparent;
+  justify-content: center;
+  align-items: center;
+  color: #531cb3;
+}
+
+.Book-card {
+  display: flex;
+  flex-direction: column;
+  padding: 5vw;
+  margin: 1vw;
+  width: 12vw;
+  height: auto;
+  border: solid red 10px;
+}
+
+.Forms-container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 2;
+  justify-content: flex-start;
+  border: solid purple 8px;
+}
+
+.Form {
+  top: 0;
+  position: sticky;
+  display: flex;
+  flex-direction: column;
+  border: solid green 8px;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.Forms-label {
+  display: flex;
+  flex-direction: column;
+  font-size: 2vmin;
+}
+
+input[type="text"] {
+  margin: 1vmin;
+  padding: 5px;
+  border: 2px solid #cccccc;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+
+input[type="text"]:focus {
+  border-color: #333333;
+}
+
+input[type="submit"] {
+  margin: 1vmin;
+  padding: 5px 15px;
+  background: #99e0b2;
+  border: 0 none;
+  cursor: pointer;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+
+.Card-title {
+}
