@@ -11,4 +11,5 @@ Express,
 NodeJs
 MySQL
 
-Run Application using npm 'Book Manager Start' script
+Requirements: NodeJS, a MySQL server running and a .env describing the SQL server PORT and Database URI placed in the root directory for the server. CD in to each directory and run npm i && npm start
+
