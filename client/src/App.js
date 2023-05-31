@@ -1,32 +1,18 @@
 import "./App.css";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import BookCard from "./components/BookCard";
-import { useQuery, gql } from "@apollo/client";
-import { GetBooks } from "./ClientGQL.mjs";
+import { Forms } from "./components/Forms";
+import { useQuery } from "@apollo/client";
+import { GET_BOOKS } from "./ClientGQL.mjs";
+
 
 function App() {
-  const { loading, error, data } = useQuery(GetBooks);
-  if (loading) {
-    return <p>Loading</p>;
-  }
-  if (error) {
-    console.log(error);
-  }
-
-  if (data) {
-    console.log(data.getBooks);
-  }
-
   return (
     <div className="App">
       <header className="App-header">Book Managment System</header>
-      <BookManagmentSystem>
-        <BooksContainer>
-          {data.getBooks.map((book, index) => {
-            return <BookCard key={index} book={book} />;
-          })}
-        </BooksContainer>
-        <Forms />
+      <BookManagmentSystem className="Book-Manager">
+        <BooksDisplay className="Books-Display" />
+        <Forms className="Forms" />
       </BookManagmentSystem>
     </div>
   );
@@ -45,32 +31,25 @@ const BooksContainer = (props) => {
   );
 };
 
-const FormsContainer = (props) => {
-  return;
-};
+const BooksDisplay = () => {
+  const { loading, error, data } = useQuery(GET_BOOKS);
 
-const Forms = (props) => {
+  if (loading) {
+    return <p>Loading</p>;
+  }
+  if (error) {
+    console.log(error);
+  }
+
+  if (data) {
+    console.log(data.getBooks);
+  }
   return (
-    <>
-      <div className="Forms-container">
-        <form className="Form">
-          <h1>Add Book</h1>
-          <label className="Forms-label">
-            Title:
-            <input type="text" className="input-text" />
-          </label>
-          <label className="Forms-label">
-            Author:
-            <input type="text" className="input-text" />
-          </label>
-          <label className="Forms-label">
-            Publication Year:
-            <input type="text" className="input-text" />
-          </label>
-          <input type="submit" className="input-submit" />
-        </form>
-      </div>
-    </>
+    <BooksContainer>
+      {data.getBooks.map((book, index) => {
+        return <BookCard key={index} book={book} />;
+      })}
+    </BooksContainer>
   );
 };
 

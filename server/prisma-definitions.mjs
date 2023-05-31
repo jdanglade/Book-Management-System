@@ -34,10 +34,10 @@ export const resolvers = {
       try {
         return await prismaClient.book.findMany();
       } catch (e) {
-        if (e.code === "INTERNAL_SERVER_ERROR") {
           console.log(`Could not retrieve any books\n` + e.toString());
-        }
         throw e;
+      } finally {
+        
       }
     },
     getBookByID: async (_, args) => {
@@ -48,12 +48,12 @@ export const resolvers = {
           },
         });
       } catch (e) {
-        if (e.code === "INTERNAL_SERVER_ERROR") {
           console.log(
             `Could not get book with that id: ${args.id}\n` + e.toString()
           );
-        }
-        throw e;
+          throw e;
+      } finally {
+
       }
     },
     getBookByTitle: async (_, args) => {
@@ -64,13 +64,14 @@ export const resolvers = {
           },
         });
       } catch (e) {
-        if (e.code === "INTERNAL_SERVER_ERROR") {
           console.log(
             `Could not get a book with ${args.title}\n` + e.toString()
           );
-        }
+          throw e;
+        
+      } finally {
+
       }
-      throw e;
     },
     getBooksByAuthor: async (_, args) => {
       try {
@@ -80,13 +81,11 @@ export const resolvers = {
           },
         });
       } catch (e) {
-        if (e.code === "INTERNAL_SERVER_ERROR") {
           console.log(
             `Could not get books with author ${args.author}\n` + e.toString()
           );
-        }
-      }
-      throw e;
+          throw e;
+      } finally {}
     },
     getBooksByPublicationYear: async (_, args) => {
       try {
@@ -96,14 +95,14 @@ export const resolvers = {
           },
         });
       } catch (e) {
-        if (e.code === "INTERNAL_SERVER_ERROR") {
           console.log(
             `Could not get books with that publication year: ${args.publicationYear}\n` +
               e.toString()
           );
-        }
+        throw e;
+      } finally {
+
       }
-      throw e;
     },
   },
   Mutation: {
@@ -117,10 +116,10 @@ export const resolvers = {
           },
         });
       } catch (e) {
-        if (e.code === "INTERNAL_SERVER_ERROR") {
-          console.log("Could not create that new book\n" + e.toString);
-        }
-        throw e;
+          console.log("Could not create that new book" + e.toString());
+          throw e;
+      } finally {
+
       }
     },
     updateBook: async (_, args) => {
@@ -135,10 +134,10 @@ export const resolvers = {
           },
         });
       } catch (e) {
-        if (e.code === "INTERNAL_SERVER_ERROR") {
-          console.log("Could not update that book\n" + e.toString);
-        }
-        throw e;
+          console.log("Could not update that book\n" + e.toString());
+          throw e;
+      } finally {
+
       }
     },
     deleteBook: async (_, args) => {
@@ -149,10 +148,10 @@ export const resolvers = {
           },
         });
       } catch (e) {
-        if (e.code === "INTERNAL_SERVER_ERROR") {
           console.log("Could not delete that book\n" + e.toString);
-        }
-        throw e;
+          throw e;
+      } finally {
+        
       }
     },
   },
